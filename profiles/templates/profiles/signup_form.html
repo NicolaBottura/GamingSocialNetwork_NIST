@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>NIST</title>
+{% endblock %}
+
+{% block body %}
+<div class="container jumbotron jumbo_mod">
+    <h1>Signup</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Submit</button>
+        </form>
+</div>
+{% endblock %}
