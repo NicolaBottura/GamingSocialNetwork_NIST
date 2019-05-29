@@ -8,13 +8,10 @@
 <div class="container">
     <h1>Profile</h1>
     <p>Username: {{ user }}</p>
-    <p>Region: {{ user.userprofile.region }}</p>
-    <p>Ranked Flex: {{ ranked_flex }}</p>
-    <p>Ranked SoloQ: {{ user.userprofile.ranked_solo_tier }}</p>
-    <p>Ranked SoloQ: {{ user.userprofile.ranked_solo_rank }}</p>
-    <p>Ranked SoloQ: {{ user.userprofile.ranked_solo_points }}</p>
-
     <p>In game name: {{ user.userprofile.game_tag }}</p>
+    <p>Region: {{ user.userprofile.region }}</p>
+    <p>Ranked Flex: {{ user.userprofile.ranked_flex }}</p>
+    <p>Ranked SoloQ: {{ user.userprofile.ranked_solo }}</p>
     <p>Description: {{ user.userprofile.description }}</p>
 </div>
 {% endblock %}

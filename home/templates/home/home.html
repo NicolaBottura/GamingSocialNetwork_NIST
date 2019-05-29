@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Nist</title>
+{% endblock %}
+
+
+{% block body %}
+<div class="container jumbotron jumbotron-liquid jumbo_mod" style="background-color: #770000; max-width: 1500px">
+<div class="row">
+    <div class="col-lg-10" style="word-wrap:break-word;">
+        <h2>Home</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+
+        <br>
+
+        <h2>{{ text }}</h2>
+        {% for post in posts %}
+            <h1>{{ post.post }}</h1>
+            <p>Posted by <a href="{% url 'profiles:view_profile_with_pk' pk=post.user.pk%}">{{ post.user.get_full_name}}</a> on {{ post.created }}</p>
+        {% endfor %}
+    </div>
+
+    <div class="col-lg-1">
+        <h2>Other People</h2>
+        {% for user in users %}
+            {% if not user in friends %}
+                <a href="{% url 'profiles:view_profile_with_pk' pk=user.pk%}">
+                    <h3>{{ user.username }}</h3>
+                </a>
+                <a href="{% url 'home:change_friends' operation='add' pk=user.pk %}">
+                <button type="button" class="btn btn-success">Add Friend</button>
+            {% endif %}
+            </a>
+        {% endfor %}
+
+        <br><br>
+        <h2>Friends</h2>
+        {% for friend in friends %}
+            <a href="{% url 'profiles:view_profile_with_pk' pk=friend.pk %}">
+                <h3>{{ friend.username }}</h3>
+            <a href="{% url 'home:change_friends' operation='remove' pk=friend.pk %}">
+            <button type="button" class="btn btn-danger">Remove Friend</button>
+            </a>
+        {% endfor %}
+    </div>
+</div>
+</div>
+
+{% endblock %}
