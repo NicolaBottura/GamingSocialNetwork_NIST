@@ -7,7 +7,7 @@ def find_my_rank(request):
     current_user = request.user.userprofile
     summoner_name = current_user.game_tag
     my_region = current_user.region
-    APIKEY = "RGAPI-688a82b1-1a46-4e75-b8c1-84928152a623"
+    APIKEY = "RGAPI-d8aa152c-9a0c-4892-913a-107b514a1100"
 
     summoner_data_url = "https://" + my_region + \
           ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" \
@@ -16,6 +16,7 @@ def find_my_rank(request):
     response = requests.get(summoner_data_url)
 
     summoner_data = response.json()
+    print(summoner_data)
     ID = summoner_data['id']
 
     session = requests.Session()
@@ -32,6 +33,7 @@ def find_my_rank(request):
     response2 = requests.get(ranked_data_url)
 
     ranked_data = response2.json()
+    print(ranked_data, len(ranked_data))
 
     session = requests.Session()
     retry = Retry(connect=3, backoff_factor=0.5)
@@ -45,21 +47,38 @@ def find_my_rank(request):
     e per la coda in SOLO, altrimenti se trova solamente il tipo SOLO, assegno il campo
     relativo a FLEX vuoto e vado ad inserire i dati per SOLO.
     
-    Manca la condizione per chi non ha mai fatto ranked, quindi ranked_data = 0.
-    (non so come farlo dioooo booono)
+    Aggiornamento: aggiungo anche le vittorie e sconfitte per ogni tipo di lega.
+    Inoltre gestisco sia se qualcuno ha fatto solo ranked SOLO che chi e' unranked.
     """
-    if ranked_data[0]['queueType'] == 'RANKED_FLEX_SR':
+    if len(ranked_data) == 2 and ranked_data[1]['queueType'] == 'RANKED_FLEX_SR':
         current_user.ranked_flex = (
-            ranked_data[0]['tier'], ranked_data[0]['rank'], ranked_data[0]['leaguePoints'])
-        if ranked_data[0]['queueType'] != '':
+            ranked_data[1]['tier'], ranked_data[1]['rank'], ranked_data[1]['leaguePoints'])
+        current_user.wins_flex = ranked_data[1]['wins']
+        current_user.losses_flex = ranked_data[1]['losses']
+        if ranked_data[0]['queueType'] == 'RANKED_SOLO_5x5':
             current_user.ranked_solo = (
-                ranked_data[1]['tier'], ranked_data[1]['rank'], ranked_data[1]['leaguePoints'])
+                ranked_data[0]['tier'], ranked_data[0]['rank'], ranked_data[0]['leaguePoints'])
+            current_user.wins_solo = ranked_data[0]['wins']
+            current_user.losses_solo = ranked_data[0]['losses']
         else:
             current_user.ranked_solo = "Not enough solo queue played"
-    elif ranked_data[0]['queueType'] == 'RANKED_SOLO_5x5':
+    elif len(ranked_data) == 1 and ranked_data[0]['queueType'] == 'RANKED_SOLO_5x5':
         current_user.ranked_flex = "Not enough flex played"
+        current_user.wins_flex = ""
+        current_user.losses_flex = ""
         current_user.ranked_solo = (
             ranked_data[0]['tier'], ranked_data[0]['rank'], ranked_data[0]['leaguePoints'])
+        current_user.wins_solo = ranked_data[0]['wins']
+        current_user.losses_solo = ranked_data[0]['losses']
+    elif len(ranked_data) == 0:
+        current_user.ranked_flex = ""
+        current_user.ranked_solo = ""
+        current_user.wins_flex = ""
+        current_user.losses_flex = ""
+        current_user.wins_solo = ""
+        current_user.losses_solo = ""
+
+
 
     current_user.save()
 

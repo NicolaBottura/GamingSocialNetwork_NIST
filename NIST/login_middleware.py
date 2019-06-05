@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib.auth.views import LogoutView
 from django.urls import reverse
 
-# porta dentro tutti gli ulr definiti nel file ../settings
+# porta dentro tutti gli url definiti nel file ../settings
 # da EXEMPT_URLS
 EXEMPT_URLS = [re.compile(settings.LOGIN_URL.lstrip('/'))]
 if hasattr(settings, 'LOGIN_EXEMPT_URLS'):

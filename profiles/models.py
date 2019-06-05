@@ -12,7 +12,11 @@ class UserProfile(models.Model):
     game_tag = models.CharField(max_length=100, default='')
     region = models.CharField(max_length=100, default='')
     ranked_flex = models.CharField(max_length=100, default='')
+    wins_flex = models.CharField(max_length=4, default='')
+    losses_flex = models.CharField(max_length=4, default='')
     ranked_solo = models.CharField(max_length=100, default='')
+    wins_solo = models.CharField(max_length=4, default='')
+    losses_solo = models.CharField(max_length=4, default='')
 
     def __str__(self):
         return self.user.username
