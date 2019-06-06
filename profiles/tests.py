@@ -1,4 +1,7 @@
 from django.test import TestCase
+from django.test.client import Client
+from .riot import find_my_rank
+from django.urls import reverse
 from .models import UserProfile
 from .riot import find_my_rank
 from django.db import models
@@ -11,11 +14,19 @@ class UserTestCase(TestCase):
         user_test = UserProfile.objects.create(user="test", game_tag="lumachino", region="euw1")
 
         self.assertTrue(user_test.find_my_rank())
-"""
-
-
 class ViewsTestCase(TestCase):
 
     def test_index(self):
         resp = self.client.get('http://127.0.0.1:8000/profiles/login')
         self.assertEqual(resp.status_code, 200)
+"""
+
+client = Client()
+
+
+class LoginViewTest(TestCase):
+    response = client.get('http://127.0.0.1:8000/profiles/login/')
+    if int(response.status_code) == 200:
+        print("OK")
+    else:
+        print("Status code: " + str(response.status_code))
