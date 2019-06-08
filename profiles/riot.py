@@ -8,7 +8,7 @@ def find_my_rank(request):
 
     summoner_name = current_user.game_tag
     my_region = current_user.region
-    APIKey = "RGAPI-6c28be85-97b4-4ed0-b4d0-023c6c817145"
+    APIKey = "RGAPI-9e5ec0ed-b1f6-4b7e-8b7b-41f570313f80"
 
     summoner_data_url = "https://" + my_region + \
                         ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" \
@@ -87,16 +87,16 @@ def find_my_rank(request):
             ranked_data[0]['tier'], ranked_data[0]['rank'], ranked_data[0]['leaguePoints'])
         current_user.wins_solo = ranked_data[0]['wins']
         current_user.losses_solo = ranked_data[0]['losses']
-
-    current_user.save()
-
-
-"""
     elif len(ranked_data) == 0:
-        current_user.ranked_flex = ""
-        current_user.ranked_solo = ""
+        current_user.ranked_flex = "Not enough flex played"
+        current_user.ranked_solo = "Not enough solo queue played"
         current_user.wins_flex = "0"
         current_user.losses_flex = "0"
         current_user.wins_solo = "0"
         current_user.losses_solo = "0"
-"""
+
+    current_user.save()
+
+
+
+

@@ -6,7 +6,7 @@ from django.db.models.signals import post_save
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete='CASCADE')
     description = models.CharField(max_length=100, default='')
-    city = models.CharField(max_length=15, blank=True)
+    country = models.CharField(max_length=15, blank=True)
     image = models.ImageField(upload_to='profile_images', default='profile_images/default.jpg')
     # game data below
     game_tag = models.CharField(max_length=15, default='')

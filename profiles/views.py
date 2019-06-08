@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
-from profiles.forms import SignupForm, EditProfileForm
+from profiles.forms import SignupForm, EditProfileForm, EditCustomFieldsForm
 from profiles.riot import find_my_rank
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
@@ -33,15 +33,17 @@ def edit_profile(request):
     template_name = 'profiles/edit_profile.html'
 
     if request.method == 'POST':
-        form = EditProfileForm(request.POST, instance=request.user.userprofile)
-        if form.is_valid():
+        form = EditCustomFieldsForm(request.POST, instance=request.user.userprofile)
+        form2 = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid() and form2.is_valid():
             form.save()
+            form2.save()
             find_my_rank(request)
             return redirect('/profiles/profile')
     else:
-        form = EditProfileForm(instance=request.user.userprofile)
-
-        args = {'form': form}
+        form = EditCustomFieldsForm(instance=request.user.userprofile)
+        form2 = EditProfileForm(instance=request.user)
+        args = {'form': form, 'form2': form2}
 
         return render(request, template_name, args)
 

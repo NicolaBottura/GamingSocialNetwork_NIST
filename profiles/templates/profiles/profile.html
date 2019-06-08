@@ -9,9 +9,11 @@
     <h1>Profile</h1>
     <h1 class="txt_mod">
             <img src="{{ user.userprofile.image.url }}" class="img_mod">
-
             {{ user.username }}
         </h1>
+    <p>Name: {{ user.first_name }}</p>
+    <p>Last name: {{ user.last_name }}</p>
+    <p>Country: {{ user.userprofile.country }}</p>
     <p>In game name: {{ user.userprofile.game_tag }}</p>
     <p>Region: {{ user.userprofile.region }}</p>
     <p>Ranked Flex: {{ user.userprofile.ranked_flex }}</p>

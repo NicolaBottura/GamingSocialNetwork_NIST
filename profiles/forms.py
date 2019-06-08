@@ -26,9 +26,21 @@ class SignupForm(UserCreationForm):
 class EditProfileForm(UserChangeForm):
 
     class Meta:
+        model = User
+        fields = {
+            'first_name',
+            'last_name',
+            'email'
+        }
+
+
+class EditCustomFieldsForm(UserChangeForm):
+
+    class Meta:
         model = UserProfile
         fields = {
             'game_tag',
             'region',
+            'country',
+            'image'
         }
-
