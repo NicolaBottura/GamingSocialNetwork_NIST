@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from profiles.forms import SignupForm, EditProfileForm, EditCustomFieldsForm
 from profiles.riot import find_my_rank
-from django.contrib.auth.models import User
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
+from .models import User, UserProfile
 
 
 def signup(request):
@@ -66,3 +66,16 @@ def change_password(request):
         args = {'form': form}
 
         return render(request, 'edit_password/change_password.html', args)
+
+
+def search_bar(request):
+    if request.method == 'GET':
+        search_query = request.GET.get('search')
+        user = User.objects.get(user=search_query)
+
+        query = user.filter(user__icontains=search_query)
+
+        args = {'user': query}
+
+        return redirect(request, 'profiles/profile.html', args)
+

@@ -10,7 +10,7 @@ class HomeView(TemplateView):
 
     def get(self, request):
         form = HomeForm()
-        # - davanti a created per stampare le date dalla piu nuova alla piu vecchia
+        # - davanti a created per stampare le date dalla piu' nuova alla piu vecchia
         posts = Post.objects.all().order_by('-created')
         users = User.objects.exclude(id=request.user.id)
         try:
@@ -51,3 +51,6 @@ def change_friends(request, operation, pk):
     elif operation == 'remove':
         Friend.lose_friend(request.user, new_friend)
     return redirect('home:home')
+
+
+

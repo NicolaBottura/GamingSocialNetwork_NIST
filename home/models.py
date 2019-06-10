@@ -5,7 +5,7 @@ from profiles.models import UserProfile
 
 class Post(models.Model):
     post = models.CharField(max_length=500)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE) #lo attacco all'user
 
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now_add=True)
