@@ -7,7 +7,7 @@ from django.conf import settings
 from django.contrib.auth.views import LogoutView
 from django.urls import reverse
 
-# porta dentro tutti gli url definiti nel file ../settings
+# porta dentro tutti gli ulr definiti nel file ../settings
 # da EXEMPT_URLS
 EXEMPT_URLS = [re.compile(settings.LOGIN_URL.lstrip('/'))]
 if hasattr(settings, 'LOGIN_EXEMPT_URLS'):
@@ -32,7 +32,7 @@ class LoginRequiredMiddleware:
         url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
 
         if path == reverse('profiles:logout').lstrip('/'):
-            LogoutView.as_view(template_name='auth/logout.html')
+            LogoutView.as_view(template_name='../profiles/templates/auth/logout.html')
 
         if request.user.is_authenticated and url_is_exempt:
             return redirect(settings.LOGIN_REDIRECT_URL)
