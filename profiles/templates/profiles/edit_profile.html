@@ -5,13 +5,53 @@
 {% endblock %}
 
 {% block body %}
-    <br>
-<div class="container">
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {{ form2.as_p }}
-        <button type="submit">Submit</button>
-    </form>
-</div>
+    <div class="container jumbotron jumbrotron-liquid jumbo_mod"
+         style="background-color: #770000; max-width: 1300px;">
+    <div class="container" style="alignment: left;">
+        <form method="post">
+            {% csrf_token %}
+                        <div class="row">
+                <div class=".col-sm">
+                    <p><b>Region: </b></p>
+                    <p><b>Country: </b></p>
+                    <p><b>GameTag: </b></p>
+                </div>
+
+                <div class="col">
+                    <p>{{ form.region }}</p>
+                    <p>{{ form.country }}</p>
+                    <p>{{ form.game_tag }}</p>
+                </div>
+            </div>
+
+            <br>
+
+            <div class="row">
+                <div class=".col-sm">
+                    <p><b>First Name: </b></p>
+                    <p><b>Last Name: </b></p>
+                    <p><b>Email: </b></p>
+                </div>
+
+                <div class="col">
+                    <p>{{ form2.first_name }}</p>
+                    <p>{{ form2.last_name }}</p>
+                    <p>{{ form2.email }}</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class=".col">Password:</div>
+                <div class="col">
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="change-password/" class="btn btn-danger" role="button">Change Password</a>
+                </div>
+            </div>
+
+            <br><br>
+
+            <button class="btn btn-success" type="submit">Submit</button>
+        </form>
+    </div>
+    </div>
 {% endblock %}

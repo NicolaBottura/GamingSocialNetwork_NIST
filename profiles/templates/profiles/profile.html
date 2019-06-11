@@ -1,28 +1,29 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>Profile</title>
+    <title>Profile</title>
 {% endblock %}
 
 {% block body %}
-<div class="container">
-    <h1>Profile</h1>
-    <h1 class="txt_mod">
+    <div class="container jumbotron jumbotron-liquid jumbo_mod"
+         style="background-color: #770000; max-width: 1300px;">
+        <h1 class="txt_mod">
             <img src="{{ user.userprofile.image.url }}" class="img_mod">
-            {{ user.username }}
-    </h1>
 
-    <p>Name: {{ user.first_name }}</p>
-    <p>Last name: {{ user.last_name }}</p>
-    <p>Country: {{ user.userprofile.country }}</p>
-    <p>In game name: {{ user.userprofile.game_tag }}</p>
-    <p>Region: {{ user.userprofile.region }}</p>
-    <p>Ranked Flex: {{ user.userprofile.ranked_flex }}</p>
-    <p>Wins in flex queue: {{ user.userprofile.wins_flex }}</p>
-    <p>Losses in flex queue: {{ user.userprofile.losses_flex }}</p>
-    <p>Ranked SoloQ: {{ user.userprofile.ranked_solo }}</p>
-    <p>Wins in solo queue: {{ user.userprofile.wins_solo }}</p>
-    <p>Wins in solo queue: {{ user.userprofile.losses_solo }}</p>
-    <p>Description: {{ user.userprofile.description }}</p>
-</div>
+            {{ user.username }}
+        </h1>
+
+        <p><b>Name: </b>{{ user.first_name }}</p>
+        <p><b>Last name: </b>{{ user.last_name }}</p>
+        <p><b>Country: </b>{{ user.userprofile.country }}</p>
+        <p><b>In game name: </b>{{ user.userprofile.game_tag }}</p>
+        <p><b>Region: </b>{{ user.userprofile.region }}</p>
+        <p><b>Ranked Flex: </b>{{ user.userprofile.ranked_flex }}</p>
+        <p><b>Wins in flex queue: </b>{{ user.userprofile.wins_flex }}</p>
+        <p><b>Losses in flex queue: </b>{{ user.userprofile.losses_flex }}</p>
+        <p><b>Ranked SoloQ: </b>{{ user.userprofile.ranked_solo }}</p>
+        <p><b>Wins in solo queue: </b>{{ user.userprofile.wins_solo }}</p>
+        <p><b>Wins in solo queue: </b>{{ user.userprofile.losses_solo }}</p>
+        <p><b>Description: </b>{{ user.userprofile.description }}</p>
+    </div>
 {% endblock %}

@@ -120,6 +120,10 @@ USE_TZ = True
 MEDIA_URL = '/media/'
 
 STATIC_URL = '/templates/static/'
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "templates/static"),
+]
+
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = '/profiles/login'
 LOGIN_EXEMPT_URLS = (

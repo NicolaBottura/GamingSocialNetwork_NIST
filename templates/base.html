@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 
+{% load static %}
 
 {% block extra_js %}
 
@@ -9,7 +10,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    {% load static %}
+
     <link rel="stylesheet" type="text/css" href= "{% static 'css/home.css' %}"/>
     <link rel="stylesheet" type="text/css" href= "{% static 'css/modifier.css' %}"/>
 
@@ -23,7 +24,7 @@
     {% endblock %}
 </head>
 
-<body style="background-color: black">
+<body style="background-color: black; color: #FFFFFF">
 
     <nav class="navbar header_mod sticky-top">
         {% block btn_home %}
@@ -39,12 +40,12 @@
             </symbol>
         </svg>
 
-        <form class="form-inline my-2 my-lg-0">
+        <form class="form-inline my-2 my-lg-0 src_box_home">
             <input class="form-control mr-sm-2"
                    type="search" placeholder="Search"
                    aria-label="Search"
                    name="search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        <button class="btn btn-outline-success my-2 my-sm-0 btn_src_box_home" type="submit">Search</button>
         </form>
 
         <div>
@@ -57,6 +58,7 @@
                         <span class="fas fa-american-sign-language-interpreting"></span>
                 </a>
             {% else %}
+                <a href="/profiles/login" class="btn btn-danger btn-lg btn_login" role="button">Login</a>
                 <a href="/profiles/signup" class="btn btn-danger btn-lg btn_signup" role="button">Signup</a>
             {% endif %}
         </div>
