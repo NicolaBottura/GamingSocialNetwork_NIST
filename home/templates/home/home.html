@@ -6,7 +6,7 @@
 
 
 {% block body %}
-<div class="container jumbotron jumbotron-liquid jumbo_mod" style="background-color: #770000; max-width: 1500px">
+<div class="container jumbotron jumbotron-liquid jumbo_mod" style="background-color: #770000; max-width: 1300px">
 <div class="row">
     <div class="col-lg-10" style="word-wrap:break-word;">
         <h2>Home</h2>
@@ -21,7 +21,7 @@
 
         <h2>{{ text }}</h2>
         {% for post in posts %}
-            <h1>{{ post.post }}</h1>
+            <h1 style="text-color: #FFFFFF">{{ post.post }}</h1>
             <p>Posted by <a href="{% url 'profiles:view_profile_with_pk' pk=post.user.pk%}">{{ post.user.get_full_name}}</a> on {{ post.created }}</p>
         {% endfor %}
     </div>

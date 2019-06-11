@@ -1,11 +1,17 @@
-<html lang="en">
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 
+
+{% block extra_js %}
+
+{% endblock extra_js %}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" type="text/css" href= "static/css/home.css"/>
-    <link rel="stylesheet" type="text/css" href= "static/css/modifier.css"/>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href= "{% static 'css/home.css' %}"/>
+    <link rel="stylesheet" type="text/css" href= "{% static 'css/modifier.css' %}"/>
 
     <link rel="stylesheet" type="text/css" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
 
@@ -13,14 +19,18 @@
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     {% block head %}
-        <title>NIST</title>
+        <title>Nist</title>
     {% endblock %}
-  <!-- Bootstrap core CSS -->
-  <!--<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">-->
 </head>
 
-<body>
-<svg xmlns="http://www.w3.org/2000/svg" style="display:none">
+<body style="background-color: black">
+
+    <nav class="navbar header_mod sticky-top">
+        {% block btn_home %}
+        <a href="/" class="btn btn-danger btn-lg btn_home" role="button"><Span></Span></a>
+        {% endblock %}
+
+        <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
             <symbol xmlns="http://www.w3.org/2000/svg" id="sbx-icon-search-6" viewBox="0 0 40 40">
                 <path d="M28.295 32.517c-2.93 2.086-6.51 3.312-10.38 3.312C8.02 35.83 0 27.81 0 17.914 0 8.02 8.02 0 17.915 0 27.81 0 35.83 8.02 35.83 17.915c0 3.87-1.227 7.45-3.313 10.38l6.61 6.61c1.166 1.165 1.163 3.057 0 4.22-1.167 1.167-3.057 1.167-4.226-.002l-6.605-6.606zm-10.38.326c8.245 0 14.928-6.683 14.928-14.928 0-8.245-6.683-14.93-14.928-14.93-8.245 0-14.93 6.685-14.93 14.93 0 8.245 6.685 14.928 14.93 14.928zm0-26.573c-6.43 0-11.645 5.214-11.645 11.645 0 .494.4.895.896.895.495 0 .896-.4.896-.895 0-5.442 4.41-9.853 9.853-9.853.494 0 .895-.4.895-.896 0-.495-.4-.896-.895-.896z" fill-rule="evenodd" />
             </symbol>
@@ -29,15 +39,6 @@
             </symbol>
         </svg>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-
-    <a href="/" class="navbar-brand">NIST</a>
-
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
         <form class="form-inline my-2 my-lg-0">
             <input class="form-control mr-sm-2"
                    type="search" placeholder="Search"
@@ -45,33 +46,26 @@
                    name="search">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item active">
-              {% if user.is_authenticated %}
-                  <a href="/profiles/profile"
-                     class="btn btn-outline-success my-2 my-sm-0">Profile</a>
 
-                  <a href="/profiles/profile/edit"
-                        class="btn btn-outline-success my-2 my-sm-0">Edit</a>
-
-                <a href="/profiles/logout"
-                        class="btn btn-outline-success my-2 my-sm-0">Logout</a>
-              {% else %}
-                <li class="nav-item">
-                    <a class="nav-link" href="/profiles/signup">Sign Up</a>
-                </li>
-              {% endif %}
-        </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
+        <div>
+            {% if user.is_authenticated %}
+                <a href="/profiles/profile" class="btn btn-danger btn-lg btn_profile" role="button">
+                        <span class="fas fa-child"></span>
+                </a>
+                <a href="/profiles/logout" class="btn btn-danger btn-lg btn_signup" role="button">Logout</a>
+                <a href="/profiles/profile/edit" class="btn btn-danger btn-lg btn_login" role="button">
+                        <span class="fas fa-american-sign-language-interpreting"></span>
+                </a>
+            {% else %}
+                <a href="/profiles/signup" class="btn btn-danger btn-lg btn_signup" role="button">Signup</a>
+            {% endif %}
+        </div>
+    </nav>
 
     {% block body %}
 
     {% endblock %}
-
 </body>
+
 
 </html>
