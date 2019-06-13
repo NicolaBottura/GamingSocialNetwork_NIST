@@ -26,8 +26,8 @@ app_name = 'profiles'
 
 
 urlpatterns = [
-    url(r'^login/$', LoginView.as_view(template_name='auth/login.html')), #as_view mi permette di convertire una classe in una funzione, che e' cio' che l'url resolver vuole
-    url(r'^logout/$', LogoutView.as_view(template_name='auth/logout.html')),
+    url(r'^login/$', LoginView.as_view(template_name='auth/login.html'), name='login'), #as_view mi permette di convertire una classe in una funzione, che e' cio' che l'url resolver vuole
+    url(r'^logout/$', LogoutView.as_view(template_name='auth/logout.html'), name='logout'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^profile/$', views.view_profile, name='view_profile'),
     url(r'^profiles/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk'),

@@ -49,6 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'NIST.login_middleware.LoginRequiredMiddleware'
 ]
 
 ROOT_URLCONF = 'NIST.urls'
@@ -127,12 +128,11 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = '/profiles/login'
 LOGIN_EXEMPT_URLS = (
-    r'^/profiles/logout/$',
+    r'^/profiles/logout/',
     r'^profiles/reset-password/$',
     r'^profiles/reset-password/done/$',
     r'^profiles/reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
     r'^profiles/reset-password/complete/$',
 )
-
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025

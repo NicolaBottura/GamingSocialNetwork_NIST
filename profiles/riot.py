@@ -8,7 +8,7 @@ def find_my_rank(request):
 
     summoner_name = current_user.game_tag
     my_region = current_user.region
-    APIKey = "RGAPI-cc119292-4119-4ba6-beca-ef2546766623"
+    APIKey = "RGAPI-27d2562c-83b8-419f-a62a-38605cf461c8"
 
     summoner_data_url = "https://" + my_region + \
                         ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" \
@@ -39,7 +39,7 @@ def find_my_rank(request):
     response2 = requests.get(ranked_data_url)
 
     ranked_data = response2.json()
-
+    print(ranked_data)
     session = requests.Session()
     retry = Retry(connect=3, backoff_factor=0.5)
     adapter = HTTPAdapter(max_retries=retry)

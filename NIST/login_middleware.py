@@ -32,7 +32,7 @@ class LoginRequiredMiddleware:
         url_is_exempt = any(url.match(path) for url in EXEMPT_URLS)
 
         if path == reverse('profiles:logout').lstrip('/'):
-            LogoutView.as_view(template_name='../profiles/templates/auth/logout.html')
+            LogoutView.as_view(template_name='auth/logout.html')
 
         if request.user.is_authenticated and url_is_exempt:
             return redirect(settings.LOGIN_REDIRECT_URL)

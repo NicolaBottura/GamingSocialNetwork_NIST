@@ -23,7 +23,7 @@
         <h2>{{ text }}</h2>
         {% for post in posts %}
             <h1>{{ post.post }}</h1>
-            <p>Posted by <a href="{% url 'profiles:view_profile_with_pk' pk=post.user.pk%}">{{ post.user.get_full_name}}</a> on {{ post.created }}</p>
+            <p>Posted by <a href="{% url 'profiles:view_profile_with_pk' pk=post.user.pk%}">{{ post.user }}</a> on {{ post.created }}</p>
         {% endfor %}
     </div>
 
