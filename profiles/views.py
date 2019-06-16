@@ -20,7 +20,16 @@ def signup(request):
 
 
 def view_profile(request, pk=None):
-    if pk:
+    if request.method == 'GET':
+        search_query = request.GET.get('search')
+        print(search_query) #non stampa quindi direi che non ci arriva
+        search = User.objects.filter(username__icontains=search_query)
+        print(search) #non stampa quindi direi che non ci arriva
+        for e in User.objects.all():
+            if search == e.username:
+                pk = e.id
+        user = User.objects.get(pk=pk)
+    elif pk:
         user = User.objects.get(pk=pk)
     else:
         user = request.user
@@ -67,15 +76,4 @@ def change_password(request):
 
         return render(request, 'edit_password/change_password.html', args)
 
-
-def search_bar(request):
-    if request.method == 'GET':
-        search_query = request.GET.get('search')
-        user = User.objects.get(user=search_query)
-
-        query = user.filter(user__icontains=search_query)
-
-        args = {'user': query}
-
-        return redirect(request, 'profiles/profile.html', args)
 
