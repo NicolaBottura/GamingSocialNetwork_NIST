@@ -19,18 +19,16 @@ from NIST import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-from .views import HomeView
-
 
 urlpatterns = [
     url('^', include('django.contrib.auth.urls')),
     url(r'^profiles/', include('profiles.urls', namespace='profiles')),
-    #url(r'\?$', views.search, name='search'),
-    #url(r'^$', HomeView.as_view(), name='home'),
+    # url(r'^$', HomeView.as_view(), name='home'),
     url(r'^',  include('home.urls', namespace='home')),
-    #url(r'^', include('home.urls', namespace='home')),
+    # url(r'^', include('home.urls', namespace='home')),
     url(r'^admin/', admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 """
 urlpatterns = [
     url(r'^', include('django.contrib.auth.urls')),

@@ -40,10 +40,6 @@ def search_profile(request, pk=None):
                 pk = e.id
                 print(pk)
         user = User.objects.get(pk=pk)
-    elif pk:
-        user = User.objects.get(pk=pk)
-    else:
-        user = request.user
 
     args = {'user': user}
     return render(request, view_profile(request, user.pk), args)

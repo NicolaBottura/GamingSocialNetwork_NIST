@@ -26,7 +26,8 @@ app_name = 'profiles'
 
 
 urlpatterns = [
-    url(r'^login/$', LoginView.as_view(template_name='auth/login.html'), name='login'), #as_view mi permette di convertire una classe in una funzione, che e' cio' che l'url resolver vuole
+    # as_view mi permette di convertire una classe in una funzione, che e' cio' che l'url resolver vuole
+    url(r'^login/$', LoginView.as_view(template_name='auth/login.html'), name='login'),
     url(r'^logout/$', LogoutView.as_view(template_name='auth/logout.html'), name='logout'),
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^profile/$', views.view_profile, name='view_profile'),
@@ -34,14 +35,14 @@ urlpatterns = [
     url(r'^profile/edit/$', views.edit_profile, name='edit_profile'),
     url(r'^profile/edit/change-password/$', views.change_password, name='change_password'),
     url(r'^reset-password/$', PasswordResetView.as_view(template_name=
-        'edit_password/reset_password.html', success_url='done/',
+                                                        'edit_password/reset_password.html', success_url='done/',
                                                         email_template_name='edit_password/reset_password_email.html'),
         name='reset_password'),
     url(r'^reset-password/done/$', PasswordResetDoneView.as_view(
-        template_name='edit_password/reset_password_done.html'), name='password_reset_done'),
+                                template_name='edit_password/reset_password_done.html'), name='password_reset_done'),
     url(r'^reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',
         PasswordResetConfirmView.as_view(template_name='edit_password/reset_password_confirm.html',
-        success_url='/profiles/reset-password/complete/'),
+                                         success_url='/profiles/reset-password/complete/'),
         name='password_reset_confirm'),
     url(r'^reset-password/complete/$', PasswordResetCompleteView.as_view(template_name=
         'edit_password/reset_password_complete.html'), name='password_reset_complete')

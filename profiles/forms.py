@@ -42,5 +42,6 @@ class EditCustomFieldsForm(UserChangeForm):
             'game_tag',
             'region',
             'country',
-            'image'
+            'image',
+            'description'
         }
