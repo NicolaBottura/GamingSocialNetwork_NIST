@@ -11,7 +11,7 @@ scrivendo questo comando in un terminale:
 Sul terminale, vederemo in output una mail con diverse informazioni, tra cui un link ad una pagina
 la quale ci permettera' di resettare la nostra password.
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from . import views
 from django.contrib.auth.views import (
     LoginView,

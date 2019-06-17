@@ -73,7 +73,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'NIST.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
@@ -119,6 +118,8 @@ USE_TZ = True
 
 
 MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_URL = '/templates/static/'
 STATICFILES_DIRS = [

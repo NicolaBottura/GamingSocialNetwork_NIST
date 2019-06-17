@@ -19,11 +19,21 @@ def signup(request):
     return render(request, 'profiles/signup_form.html', args)
 
 
+# se non chiamiamo la funzione con una pk semplicemenmte non la carica e non la usa
 def view_profile(request, pk=None):
+    if pk:
+        user = User.objects.get(pk=pk)
+    else:
+        user = request.user
+    args = {'user': user}
+    return render(request, 'profiles/profile.html', args)
+
+
+def search_profile(request, pk=None):
     if request.method == 'GET':
         search_query = request.GET.get('search')
-        print(search_query) #non stampa quindi direi che non ci arriva
-        #search = User.objects.filter(username__icontains=search_query)
+        print(search_query)  # non stampa quindi direi che non ci arriva
+        # search = User.objects.filter(username__icontains=search_query)
         for e in User.objects.all():
             if search_query == e.username:
                 pk = e.id
@@ -35,7 +45,7 @@ def view_profile(request, pk=None):
         user = request.user
 
     args = {'user': user}
-    return render(request, 'profiles/profile.html', args)
+    return render(request, view_profile(request, user.pk), args)
 
 
 def edit_profile(request):

@@ -46,6 +46,8 @@ class ViewsStatusCodeTest(TestCase):
         response = client.get('http://127.0.0.1:8000/profiles/profile/')
 
         self.assertEqual(response.status_code, 200)
+
+
 """
     def test_riot_urls(self):
         client = Client()
