@@ -23,10 +23,9 @@ def view_profile(request, pk=None):
     if request.method == 'GET':
         search_query = request.GET.get('search')
         print(search_query) #non stampa quindi direi che non ci arriva
-        search = User.objects.filter(username__icontains=search_query)
-        print(search) #non stampa quindi direi che non ci arriva
+        #search = User.objects.filter(username__icontains=search_query)
         for e in User.objects.all():
-            if search == e.username:
+            if search_query == e.username:
                 pk = e.id
         user = User.objects.get(pk=pk)
     elif pk:
@@ -75,5 +74,3 @@ def change_password(request):
         args = {'form': form}
 
         return render(request, 'edit_password/change_password.html', args)
-
-
