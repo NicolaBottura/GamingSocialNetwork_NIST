@@ -124,11 +124,11 @@ STATIC_URL = '/templates/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "templates/static"),
 ]
-
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = '/profiles/login'
 LOGIN_EXEMPT_URLS = (
     r'^/profiles/logout/',
+    r'^profiles/signup/',
     r'^profiles/reset-password/$',
     r'^profiles/reset-password/done/$',
     r'^profiles/reset-password/confirm/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$',

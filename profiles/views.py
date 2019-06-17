@@ -11,7 +11,7 @@ def signup(request):
         form = SignupForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/profiles')
+            return redirect('/')
     else:
         form = SignupForm()
 
@@ -27,6 +27,7 @@ def view_profile(request, pk=None):
         for e in User.objects.all():
             if search_query == e.username:
                 pk = e.id
+                print(pk)
         user = User.objects.get(pk=pk)
     elif pk:
         user = User.objects.get(pk=pk)
