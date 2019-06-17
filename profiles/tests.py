@@ -1,6 +1,7 @@
-from django.test import TestCase
-from django.test.client import Client
-from django.urls import reverse
+from django.test import TestCase, RequestFactory
+from .views import edit_profile, signup
+from django.contrib.auth.models import AnonymousUser, User
+from .models import UserProfile, create_profile
 
 """
 class UserTestCase(TestCase):
@@ -18,48 +19,31 @@ class ViewsTestCase(TestCase):
 """
 
 
-class ViewsFunctionalityTest(TestCase):
-    def test_create_new_user(self):
-        response = self.client.post(reverse('profiles:signup'),
-                                    data={'form': {'user': "test", "first_name": "te", "last_name": "st",
-                                                   "password1": "Test1234", "password2": "Test1234",
-                                                   "email": "test@mail.com"}})
-
+class ModelTests(TestCase):
+    def test_whatever_creation(self):
+        user = User.objects.create_user(username='testuser', email='test@mail.com', password='12345')
+        response = create_profile(user)
         self.assertTrue(response)
 
+
+class ViewsTests(TestCase):
+    def setUp(self):
+        self.factory = RequestFactory()
+        self.user = User.objects.create_user(username='testuser', email='test@mail.com', password='12345')
+
     def test_login(self):
-        response = self.client.login(username="testuser", password="testuser321")
+        login = self.client.login(username='testuser', password='12345')
+#
+        self.assertTrue(login)
 
-        self.assertEqual(response, False)
+    def test_view(self):
+        # Create an instance of a GET request.
+        request = self.factory.get('/profiles/profile/edit_profile')
 
+        request.user = self.user
 
-class ViewsStatusCodeTest(TestCase):
+        request.user.userprofile = UserProfile()
 
-    def test_login_view(self):
-        client = Client()
-        response = client.get('http://127.0.0.1:8000/profiles/login/')
-
-        self.assertEqual(response.status_code, 200)
-
-    def test_edit_profile(self):
-        client = Client()
-        response = client.get('http://127.0.0.1:8000/profiles/profile/')
+        response = edit_profile(request)
 
         self.assertEqual(response.status_code, 200)
-
-
-"""
-    def test_riot_urls(self):
-        client = Client()
-        summoner_name = "lumachino"
-        my_region = "euw1"
-        APIKey = "RGAPI-6c28be85-97b4-4ed0-b4d0-023c6c817145"
-
-        summoner_data_url = "https://" + my_region + \
-                            ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" \
-                            + summoner_name + "?api_key=" + APIKey
-
-        response = client.get(summoner_data_url)
-
-        self.assertEqual(response.status_code, 200)
-"""

@@ -8,7 +8,7 @@ def find_my_rank(request):
 
     summoner_name = current_user.game_tag
     my_region = current_user.region
-    APIKey = "RGAPI-e79d25ff-cf83-4117-924a-e72ea0641c2c"
+    APIKey = "RGAPI-1addb19c-d6d3-41c9-a516-6825fc88b22b"
 
     summoner_data_url = "https://" + my_region + \
                         ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" \
@@ -19,7 +19,7 @@ def find_my_rank(request):
     summoner_data = response.json()
     print(summoner_data)
 
-    if response.status_code != 200 and summoner_data['status']['status_code'] == 404:
+    if response.status_code != 200:
         print("Non esiste nessun evocatore con questo nome!")  # aggiungere questo messaggio nella template
         return
 
@@ -33,7 +33,7 @@ def find_my_rank(request):
     session.get(summoner_data_url)
 
     ranked_data_url = "https://" + my_region + \
-                      ".api.riotgames.com/lol/league/v4/positions/by-summoner/" \
+                      ".api.riotgames.com/lol/league/v4/entries/by-summoner/" \
                       + ID + "?api_key=" + APIKey
 
     response2 = requests.get(ranked_data_url)

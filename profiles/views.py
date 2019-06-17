@@ -19,13 +19,14 @@ def signup(request):
     return render(request, 'profiles/signup_form.html', args)
 
 
-# se non chiamiamo la funzione con una pk semplicemenmte non la carica e non la usa
 def view_profile(request, pk=None):
     if pk:
         user = User.objects.get(pk=pk)
     else:
         user = request.user
+
     args = {'user': user}
+
     return render(request, 'profiles/profile.html', args)
 
 
