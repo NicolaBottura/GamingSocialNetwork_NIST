@@ -8,7 +8,7 @@ def find_my_rank(request):
 
     summoner_name = current_user.game_tag
     my_region = current_user.region
-    APIKey = "RGAPI-1addb19c-d6d3-41c9-a516-6825fc88b22b"
+    APIKey = "RGAPI-a4307801-7713-4be8-a878-04569a749956"
 
     summoner_data_url = "https://" + my_region + \
                         ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" \
@@ -39,13 +39,6 @@ def find_my_rank(request):
     response2 = requests.get(ranked_data_url)
 
     ranked_data = response2.json()
-    print(ranked_data)
-    session = requests.Session()
-    retry = Retry(connect=3, backoff_factor=0.5)
-    adapter = HTTPAdapter(max_retries=retry)
-    session.mount('http://', adapter)
-    session.mount('https://', adapter)
-    session.get(ranked_data_url)
 
     """
     Se il tipo di ranked e' FLEX allora aggiorno i campi relativi a quel tipo di coda
