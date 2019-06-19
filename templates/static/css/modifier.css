@@ -1,11 +1,10 @@
 .jumbo_mod {
     max-width: 1300px;
-    /*color: #ffeded;*/
 }
 
 .img_mod {
     position: relative;
-    top: -50px;
+    top: 5px;
     left: -20px;
     /*width: 200px;
     height: 200px;      DA VEDERE: CONTROLLARE SE VOGLIAMO FISSARE LE DIMENSIONI DELLE IMMAGINI O NO (per me no)*/
@@ -15,4 +14,5 @@
 
 .txt_mod{
     text-transform: capitalize; /*DA VEDERE: CONTROLLARE SE VOGLIAMO IL NICK CON LA MAIUSCOLA INIZIALE OPPURE LASCIARLO COME LO SCRIVE L'UTENTE*/
+    color : #FFFFFF;
 }

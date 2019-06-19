@@ -10,8 +10,9 @@
     left: 10px;
     height: 68px;
     width: 68px;
-    background-image: url('/media/profile_images/default.png');
+    background-image: url('/media/images/home.jpg');
     background-size: 100%;
+    background-repeat: space;
 }
 
 .src_box_home {

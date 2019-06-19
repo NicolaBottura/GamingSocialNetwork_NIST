@@ -1,4 +1,4 @@
-#!C:\Users\Nicola\Desktop\NIST\venv\Scripts\python.exe
+#!"C:\Users\StefANO\Desktop\robe\PyCharm projects\GamingSocialNetwork_NIST\venv\Scripts\python.exe"
 # EASY-INSTALL-ENTRY-SCRIPT: 'setuptools==39.1.0','console_scripts','easy_install'
 __requires__ = 'setuptools==39.1.0'
 import re

@@ -5,12 +5,11 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container jumbotron jumbrotron-liquid jumbo_mod"
-         style="background-color: #770000; max-width: 1300px;">
-    <div class="container" style="alignment: left;">
+    <br>
+    <div class="container jumbo_mod txt_mod" style="alignment: left;">
         <form method="post">
             {% csrf_token %}
-                        <div class="row">
+            <div class="row">
                 <div class=".col-sm">
                     <p><b>Region: </b></p>
                     <p><b>Country: </b></p>
@@ -58,6 +57,5 @@
 
             <button class="btn btn-success" type="submit">Submit</button>
         </form>
-    </div>
     </div>
 {% endblock %}

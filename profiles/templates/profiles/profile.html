@@ -5,25 +5,43 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container jumbotron jumbotron-liquid jumbo_mod"
-         style="background-color: #770000; max-width: 1300px;">
+    <div class="container jumbo_mod txt_mod">
         <h1 class="txt_mod">
-            <img src="{{ 'profile_image/default.png' }}" class="img_mod">
+                <img class="img_mod" src="{{ user.userprofile.image.url }}">
 
             {{ user.username }}
         </h1>
+<div class="row">
+                <div class=".col-sm">
+                    <p><b>Name: </b></p>
+                    <p><b>Last name: </b><p>
+                    <p><b>Country: </b><p>
+                    <p><b>In game name: </b><p>
+                    <p><b>Region: </b><p>
+                    <p><b>Ranked Flex: </b><p>
+                    <p><b>Wins in flex queue: </b><p>
+                    <p><b>Losses in flex queue: </b><p>
+                    <p><b>Ranked SoloQ: </b><p>
+                    <p><b>Wins in solo queue: </b><p>
+                    <p><b>Wins in solo queue: </b><p>
+                    <p><b>Description: </b><p>
+                </div>
 
-        <p><b>Name: </b>{{ user.first_name }}</p>
-        <p><b>Last name: </b>{{ user.last_name }}</p>
-        <p><b>Country: </b>{{ user.userprofile.country }}</p>
-        <p><b>In game name: </b>{{ user.userprofile.game_tag }}</p>
-        <p><b>Region: </b>{{ user.userprofile.region }}</p>
-        <p><b>Ranked Flex: </b>{{ user.userprofile.ranked_flex }}</p>
-        <p><b>Wins in flex queue: </b>{{ user.userprofile.wins_flex }}</p>
-        <p><b>Losses in flex queue: </b>{{ user.userprofile.losses_flex }}</p>
-        <p><b>Ranked SoloQ: </b>{{ user.userprofile.ranked_solo }}</p>
-        <p><b>Wins in solo queue: </b>{{ user.userprofile.wins_solo }}</p>
-        <p><b>Wins in solo queue: </b>{{ user.userprofile.losses_solo }}</p>
-        <p><b>Description: </b>{{ user.userprofile.description }}</p>
+                <div class="col">
+                    <p>{{ user.first_name }}</p>
+                    <p>{{ user.last_name }}</p>
+                    <p>{{ user.userprofile.country }}</p>
+                    <p>{{ user.userprofile.game_tag }}</p>
+                    <p>{{ user.userprofile.region }}</p>
+                    <p>{{ user.userprofile.ranked_flex }}</p>
+                    <p>{{ user.userprofile.wins_flex }}</p>
+                    <p>{{ user.userprofile.losses_flex }}</p>
+                    <p>{{ user.userprofile.ranked_solo }}</p>
+                    <p>{{ user.userprofile.wins_solo }}</p>
+                    <p>{{ user.userprofile.losses_solo }}</p>
+                    <p>{{ user.userprofile.description }}</p>
+                </div>
+            </div>
+
     </div>
 {% endblock %}

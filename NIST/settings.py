@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_private_chat',
 ]
 
 MIDDLEWARE = [
@@ -128,6 +129,7 @@ STATICFILES_DIRS = [
 LOGIN_REDIRECT_URL = "/"
 LOGIN_URL = '/profiles/login'
 LOGIN_EXEMPT_URLS = (
+    r'^/profiles/login',
     r'^/profiles/logout/',
     r'^profiles/signup/',
     r'^profiles/reset-password/$',
@@ -137,3 +139,7 @@ LOGIN_EXEMPT_URLS = (
 )
 EMAIL_HOST = 'localhost'
 EMAIL_PORT = 1025
+
+CHAT_WS_SERVER_HOST = 'localhost'
+CHAT_WS_SERVER_PORT = 5002
+CHAT_WS_SERVER_PROTOCOL = 'ws'

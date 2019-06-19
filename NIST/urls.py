@@ -15,10 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.conf.urls import url, include
-from NIST import views
 from django.conf import settings
 from django.conf.urls.static import static
 
+from django_private_chat import urls as django_private_chat_urls
 
 urlpatterns = [
     url('^', include('django.contrib.auth.urls')),
@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^',  include('home.urls', namespace='home')),
     # url(r'^', include('home.urls', namespace='home')),
     url(r'^admin/', admin.site.urls),
+    url(r'^', include('django_private_chat.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 """
