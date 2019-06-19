@@ -8,7 +8,7 @@ def find_my_rank(request):
 
     summoner_name = current_user.game_tag
     my_region = current_user.region
-    APIKey = "RGAPI-a4307801-7713-4be8-a878-04569a749956"
+    APIKey = "RGAPI-bf168e6e-8919-4967-873d-6109f4cad577"
 
     summoner_data_url = "https://" + my_region + \
                         ".api.riotgames.com/lol/summoner/v4/summoners/by-name/" \

@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from home.models import Post, User
+from home.models import Post, User, Friend
 
 
 class ViewTests(TestCase):
@@ -16,9 +16,10 @@ class ViewTests(TestCase):
 class ModelTests(TestCase):
     def setUp(self):
         self.client = Client()
-        self.user = User.objects.create_superuser('Test', 'test@.com', 'Test1234')
+        self.user = User.objects.create_superuser('Test', 'test@mail.com', 'Test1234')
 
         Post.objects.create(post='just a test', user=self.user)
+        Friend.objects.create(current_user=self.user)
 
     def test_text_content(self):
         """
@@ -26,8 +27,8 @@ class ModelTests(TestCase):
         combacino
         """
         post = Post.objects.get(id=1)
-        expected_object_name = post.post
-        self.assertEquals(expected_object_name, 'just a test')
+        expected_object_content = post.post
+        self.assertEquals(expected_object_content, 'just a test')
 
     def test_post_list_view(self):
         """
@@ -44,5 +45,3 @@ class ModelTests(TestCase):
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, 'just a test')
         self.assertTemplateUsed(response, 'home/home.html')
-
-

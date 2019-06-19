@@ -1,17 +1,16 @@
 {% extends 'base.html' %}
 
-{% block head %}
-    <title>Profile</title>
-{% endblock %}
-
 {% block body %}
-    <div class="container jumbotron jumbotron-liquid jumbo_mod"
-         style="background-color: #770000; max-width: 1300px;">
-        <h1 class="txt_mod">
-            <img src="{{ 'profile_image/default.png' }}" class="img_mod">
-
-            {{ user.username }}
-        </h1>
+    <div class="container jumbotron jumbotron-liquid jumbo_mod" style="background-color: #770000; max-width: 1300px;">
+    <form class="form-inline my-2 my-lg-0">
+              <input class="form-control mr-sm-2"
+                     type="search"
+                     placeholder="Search"
+                     aria-label="Search"
+                     name="search"
+                     value="{{ search_term }}">
+              <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
 
         <p><b>Name: </b>{{ user.first_name }}</p>
         <p><b>Last name: </b>{{ user.last_name }}</p>
@@ -25,5 +24,7 @@
         <p><b>Wins in solo queue: </b>{{ user.userprofile.wins_solo }}</p>
         <p><b>Wins in solo queue: </b>{{ user.userprofile.losses_solo }}</p>
         <p><b>Description: </b>{{ user.userprofile.description }}</p>
+
+
     </div>
 {% endblock %}

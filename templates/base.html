@@ -40,17 +40,13 @@
             </symbol>
         </svg>
 
-
-
-    <form class="form-inline my-2 my-lg-0 src_box_home">
-        <input class="form-control mr-sm-2"
-               type="search" placeholder="Search"
-               aria-label="Search"
-               name="search">
-        <button class="btn btn-outline-success my-2 my-sm-0 btn_src_box_home" type="submit">Search</button>
-    </form>
-
-
+        <form class="form-inline my-2 my-lg-0 src_box_home">
+            <input class="form-control mr-sm-2"
+                   type="search" placeholder="Search"
+                   aria-label="Search"
+                   name="search">
+            <a href="{% url 'profiles:view_profile_with_pk' pk=user.pk %}"></a>
+        </form>
 
 
         <div>

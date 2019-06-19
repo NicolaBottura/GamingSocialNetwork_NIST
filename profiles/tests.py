@@ -56,11 +56,27 @@ class ViewsTests(TestCase):
 
 
 class ModelTests(TestCase):
-    """
-    Controllo che tutti valori equivalenti
-    a region nel database siano composti
-    effettivamente da meno di 4 caratteri.
-    """
+    def setUp(self):
+        self.client = Client()
+        self.user = User.objects.create_user('Test', 'test@mail.com', 'Test1234')
+
     def test_region_length(self):
+        """
+        Controllo che tutti valori equivalenti
+        a region nel database siano composti
+        effettivamente da meno di 4 caratteri.
+        """
         for u in UserProfile.objects.all():
             self.assertLessEqual(len(u.region), 4)
+
+    def test_user_content(self):
+        """
+        Test che l'utente definito in setUp()
+        sia stato creato correttamente.
+        """
+        user = User.objects.get()
+        expected_object_name = user.username
+        expected_object_mail = user.email
+
+        self.assertEqual(expected_object_name, 'Test')
+        self.assertEqual(expected_object_mail, 'test@mail.com')

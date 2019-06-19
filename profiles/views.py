@@ -30,19 +30,16 @@ def view_profile(request, pk=None):
     return render(request, 'profiles/profile.html', args)
 
 
-def search_profile(request, pk=None):
-    if request.method == 'GET':
-        search_query = request.GET.get('search')
-        print(search_query)  # non stampa quindi direi che non ci arriva
-        # search = User.objects.filter(username__icontains=search_query)
-        for e in User.objects.all():
-            if search_query == e.username:
-                pk = e.id
-                print(pk)
-        user = User.objects.get(pk=pk)
+def search_profile(request):
+    search_term = ''
+    if 'search' in request.GET:
+        search_term = request.GET.get('search')
+        user = UserProfile.objects.filter(user__username__icontains=search_term)
+        print(search_term)
+        print(user)
 
-    args = {'user': user}
-    return render(request, view_profile(request, user.pk), args)
+    args = {'search_term': search_term}
+    return render(request, 'profiles/search_profile.html', args)
 
 
 def edit_profile(request):

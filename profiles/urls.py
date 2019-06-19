@@ -32,6 +32,9 @@ urlpatterns = [
     url(r'^signup/$', views.signup, name='signup'),
     url(r'^profile/$', views.view_profile, name='view_profile'),
     url(r'^profiles/(?P<pk>\d+)/$', views.view_profile, name='view_profile_with_pk'),
+
+    url(r'^search/$', views.search_profile, name='search_profile'),
+
     url(r'^profile/edit/$', views.edit_profile, name='edit_profile'),
     url(r'^profile/edit/change-password/$', views.change_password, name='change_password'),
     url(r'^reset-password/$', PasswordResetView.as_view(template_name=
